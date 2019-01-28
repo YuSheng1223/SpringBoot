@@ -1,0 +1,10 @@
+#server:
+#  port: 8081
+#  context-path:  /crud02
+#spring:
+#  messages:
+#    basename: i18n.login
+#  thymeleaf:
+#    cache: false
+#  mvc:
+#    date-format:  yyyy-MM-dd

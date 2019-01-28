@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--引入htymeleaf名称空间  这样就有提示了-->
+<head>
+    <meta charset="UTF-8">
+    <title>引用thymeleaf</title>
+</head>
+<body>
+    <h1>引入thymeleaf模板引擎</h1>
+    <!--将div中的内容设置为name中的值-->
+    <div th:text="${name}"  th:class="${class}" th:id="${id}"></div>
+    <input th:value="#{class}"  value=""/>
+</body>
+</html>

@@ -1,0 +1,58 @@
+#访问数据库 配置jdbc 连接信息
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/ssmdemo
+    driver-class-name: com.mysql.jdbc.Driver
+    #指定建表语句的位置
+    #schema:
+     # - classpath:sql/employee.sql
+     # - classpath:sql/departemnt.sql
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    #设置默认的隔离别别为读写提交
+    tomcat:
+      default-transaction-isolation: 2
+      #缓存配置
+  cache:
+    type: redis
+    cache-names: redisCache
+
+
+#mybatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.ly.bean
+
+#logging配置 这个级别的日志多到可怕...
+#logging:
+#  level:
+#    root: debug
+#    org:
+#      springframework: debug
+#      org:
+#        mybatis: debug
+
+  # redis 配置  用代码的方式配了 这里就不配了
+
+
+
+

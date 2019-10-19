@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.mapper.EmployeeMapper">
+    <!--    public Employee getEmpById(Integer id);
+
+     public void insertEmp(Employee employee);-->
+    <select id="getEmpById" resultType="com.ly.bean.Employee">
+        SELECT * FROM employee WHERE id=#{id}
+    </select>
+
+    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO employee(lastName,email,gender,d_id) VALUES (#{lastName},#{email},#{gender},#{dId})
+    </insert>
+
+    <delete id="deleteEmp">
+        delete from employee where id = #{id}
+    </delete>
+
+    <update id="updateEmp" parameterType="emp">
+        update employee set lastName = #{lastName},gender = #{gender},email = #{email},d_id = #{dId}  where id = #{id}
+    </update>
+</mapper>

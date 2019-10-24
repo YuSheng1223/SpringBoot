@@ -73,7 +73,6 @@ public class TokenServiceImpl implements TokenService {
             throw new Exception(" 重复提交! ");
         }
 
-
         log.info(" 此请求成功提交表单  验证token成功！ ");
 
     }
@@ -103,8 +102,6 @@ public class TokenServiceImpl implements TokenService {
 
             throw new Exception("重复提交");
         }
-
-
 
         log.info(" 此请求成功提交表单 ");
     }

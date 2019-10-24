@@ -17,7 +17,6 @@ import java.lang.reflect.UndeclaredThrowableException;
  * @Version V1.0
  */
 @Slf4j
-@Order(1)
 @RestControllerAdvice
 public class ControllerAdviceAspect {
 

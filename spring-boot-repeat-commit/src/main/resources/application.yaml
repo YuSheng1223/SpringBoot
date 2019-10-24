@@ -23,3 +23,7 @@ spring:
         maxIdle: 8
         # 连接池中的最小空闲连接
         minIdle: 0
+  thymeleaf:
+    prefix: classpath:/templates/
+  resources:
+    static-locations: classpath:/static/

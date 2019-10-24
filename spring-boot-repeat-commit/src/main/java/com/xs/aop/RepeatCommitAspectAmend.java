@@ -36,7 +36,7 @@ public class RepeatCommitAspectAmend {
     /***
      * controller包下所有的类所有方法 排除前台主动获取token类
      */
-    @Pointcut("execution(public * com.xs.controller..*(..))   && !execution(public * com.xs.controller.TokenController.*(..)) ")
+    @Pointcut("execution(public * com.xs.controller..*(..)) &&  @annotation(com.xs.annotations.ForbidRepeatCommit)  && !execution(public * com.xs.controller.TokenController.*(..)) ")
     public void verifyRequestToken() {
 
     }
@@ -46,7 +46,7 @@ public class RepeatCommitAspectAmend {
      * @param joinPoint
      * @throws Exception
      */
-    @Before("verifyRequestToken()")
+   // @Before("verifyRequestToken()")
     public void execVerify(JoinPoint joinPoint) throws Exception {
 
         //类
@@ -61,7 +61,6 @@ public class RepeatCommitAspectAmend {
             throw new Exception("验证表单重复提交切入异常");
         }
 
-
         Class<?>[] parameterTypes = ((MethodSignature) joinPoint.getSignature()).getMethod().getParameterTypes();
         //通过方法名称和参数列表定位方法
         Method method = target.getClass().getMethod(methodName,parameterTypes);
@@ -74,10 +73,36 @@ public class RepeatCommitAspectAmend {
             HttpServletRequest request = attributes.getRequest();
             String key = sessionId + "-" + request.getServletPath();
 
-            //校验token  判断是否为重复提交 使用session+url机制
+
+            //  判断是否为重复提交 使用session+url机制
             tokenService.checkTokenBySessionAndUrl(key);
 
         }
+
+    }
+
+
+
+
+
+    /***
+     * 重复提交token校验
+     * @param joinPoint
+     * @throws Exception
+     */
+    @Before("verifyRequestToken()")
+    public void execVerify02(JoinPoint joinPoint) throws Exception {
+
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        String sessionId = RequestContextHolder.getRequestAttributes().getSessionId();
+        HttpServletRequest request = attributes.getRequest();
+        String key = sessionId + "-" + request.getServletPath();
+
+
+        //  判断是否为重复提交 使用session+url机制
+        tokenService.checkTokenBySessionAndUrl(key);
+
+
 
     }
 }

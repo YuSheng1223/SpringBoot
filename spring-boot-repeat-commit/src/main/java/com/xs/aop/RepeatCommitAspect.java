@@ -18,14 +18,14 @@ import java.lang.reflect.Method;
 
 /**
  * @ClassName RepeatCommitAspect
- * @Description 校验重复提交切面  使用token机制
+ * @Description 校验重复提交切面  使用token机制  不合理 弃用
  * @Author
  * @Date 2019-10-23 下午 2:53
  * @Version V1.0
  */
-@Aspect
+//@Aspect
 @Slf4j
-@Component
+//@Component
 public class RepeatCommitAspect {
 
 
